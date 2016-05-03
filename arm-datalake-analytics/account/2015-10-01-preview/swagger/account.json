@@ -1427,7 +1427,8 @@
         "serverUri",
         "databaseName",
         "userName",
-        "password"
+        "password",
+        "runtimeVersion"
       ],
       "properties": {
         "serverUri": {
@@ -1440,8 +1441,7 @@
         },
         "runtimeVersion": {
           "type": "string",
-          "readOnly": true,
-          "description": "Gets the Hive version associated with the metastore. Format: 1.2.3.4"
+          "description": "Gets or sets the Hive version associated with the metastore. Format: 1.2.3.4"
         },
         "userName": {
           "type": "string",
