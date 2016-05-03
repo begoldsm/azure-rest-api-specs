@@ -1447,7 +1447,7 @@
           "type": "string",
           "description": "Sets the user name for the connection."
         },
-        "databaseName": {
+        "password": {
           "type": "string",
           "description": "Sets the password for the connection."
         }
