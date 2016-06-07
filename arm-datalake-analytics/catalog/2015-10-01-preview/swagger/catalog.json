@@ -2205,10 +2205,6 @@
           "type": "string",
           "description": "Gets or sets the name of the schema associated with this table partition and database."
         },
-        "parentName": {
-          "$ref": "/definitions/DdlName",
-          "description": "Gets or sets the Ddl object of the partition's parent."
-        },
         "partitionName": {
           "type": "string",
           "x-ms-client-name": "name",
