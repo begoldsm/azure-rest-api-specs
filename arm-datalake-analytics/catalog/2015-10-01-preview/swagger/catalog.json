@@ -2205,6 +2205,10 @@
           "type": "string",
           "description": "Gets or sets the name of the schema associated with this table partition and database."
         },
+        "parentName": {
+          "$ref": "/definitions/DdlName",
+          "description": "Gets or sets the Ddl object of the partition's parent."
+        },
         "partitionName": {
           "type": "string",
           "x-ms-client-name": "name",
@@ -2221,6 +2225,11 @@
             "type": "string"
           },
           "description": "Gets or sets the list of labels associated with this partition."
+        },
+        "createDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Gets or sets the creation time of the partition"
         }
       },
       "description": "A Data Lake Analytics catalog U-SQL table partition item."
