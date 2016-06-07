@@ -2214,6 +2214,10 @@
           "x-ms-client-name": "name",
           "description": "Gets or sets the name of the table partition."
         },
+        "parentName": {
+          "$ref": "/definitions/DdlName",
+          "description": "Gets or sets the Ddl object of the partition's parent."
+        },
         "indexId": {
           "type": "integer",
           "format": "int32",
