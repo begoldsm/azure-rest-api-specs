@@ -449,6 +449,12 @@
           "format": "date-time",
           "description": "the last update time for the statistics."
         },
+        "finalizingTimeUtc": {
+          "type": "string",
+          "readOnly": true,
+          "format": "date-time",
+          "description": "the job finalizing start time."
+        },
         "stages": {
           "type": "array",
           "readOnly": true,
