@@ -305,6 +305,40 @@
           }
         }
       },
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "operationId": "Catalog_GetCredential",
+        "description": "Retrieves the specified credential from the Data Lake Analytics catalog.",
+        "parameters": [
+          {
+            "name": "databaseName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the database containing the schema."
+          },
+          {
+            "name": "credentialName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the credential."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/USqlCredential"
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Catalog"
@@ -455,42 +489,6 @@
           "nextLinkName": "nextLink"
         },
         "x-ms-odata": "#/definitions/USqlExternalDataSource"
-      }
-    },
-    "/catalog/usql/databases/{databaseName}/credentials/{credentialName}": {
-      "get": {
-        "tags": [
-          "Catalog"
-        ],
-        "operationId": "Catalog_GetCredential",
-        "description": "Retrieves the specified credential from the Data Lake Analytics catalog.",
-        "parameters": [
-          {
-            "name": "databaseName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The name of the database containing the schema."
-          },
-          {
-            "name": "credentialName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The name of the credential."
-          },
-          {
-            "$ref": "#/parameters/ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/USqlCredential"
-            }
-          }
-        }
       }
     },
     "/catalog/usql/databases/{databaseName}/credentials": {
