@@ -255,10 +255,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/USqlCredential"
-            }
+            "description": "Successfully created the credential within the specified database.",
           }
         }
       },
@@ -298,10 +295,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/USqlCredential"
-            }
+            "description": "Successfully updated the specified credential's password in the specified database",
           }
         }
       },
@@ -332,7 +326,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Successfully retrieved and returned the specified credential (name only) from the specified database.",
             "schema": {
               "$ref": "#/definitions/USqlCredential"
             }
@@ -363,7 +357,7 @@
           {
             "name": "parameters",
             "in": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "$ref": "#/definitions/DataLakeAnalyticsCatalogCredentialDeleteParameters"
             },
@@ -375,7 +369,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successfully deleted the specified credential from the specified database."
           }
         }
       }
