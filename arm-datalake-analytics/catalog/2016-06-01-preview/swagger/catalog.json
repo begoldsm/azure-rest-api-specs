@@ -365,7 +365,7 @@
             "in": "body",
             "required": false,
             "schema": {
-              "$ref": "#definitions/DataLakeAnalyticsCatalogCredentialDeleteParameters"
+              "$ref": "#/definitions/DataLakeAnalyticsCatalogCredentialDeleteParameters"
             },
             "description": "The parameters to delete a credential if the current user is not the account owner."
           },
@@ -1949,7 +1949,8 @@
           "type": "string",
           "description": "the current password for the credential and user with access to the data source. This is required if the requester is not the account owner."
         }
-      }
+      },
+      "description": "Data Lake Analytics catalog credential deletion parameters."
     },
     "DataLakeAnalyticsCatalogCredentialUpdateParameters": {
       "properties": {
