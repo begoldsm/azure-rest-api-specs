@@ -339,7 +339,7 @@
           }
         }
       },
-      "delete": {
+      "post": {
         "tags": [
           "Catalog"
         ],
@@ -359,6 +359,20 @@
             "required": true,
             "type": "string",
             "description": "The name of the credential to delete"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "description": "the password for the credential. This must be supplied if the user deleting it is not the creator of the credential."
+                }
+              }
+            },
+            "description": "The parameters to submit a job."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
