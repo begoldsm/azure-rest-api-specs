@@ -361,18 +361,13 @@
             "description": "The name of the credential to delete"
           },
           {
-            "name": "password",
+            "name": "parameters",
             "in": "body",
             "required": false,
             "schema": {
-              "properties": {
-                "password": {
-                  "type": "string",
-                  "description": "the password for the credential. This must be supplied if the user deleting it is not the creator of the credential."
-                }
-              }
+              "$ref": "#definitions/DataLakeAnalyticsCatalogCredentialDeleteParameters"
             },
-            "description": "The parameters to submit a job."
+            "description": "The parameters to delete a credential if the current user is not the account owner."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -1947,6 +1942,14 @@
         "userId"
       ],
       "description": "Data Lake Analytics catalog credential creation parameters."
+    },
+    "DataLakeAnalyticsCatalogCredentialDeleteParameters": {
+      "properties": {
+        "password": {
+          "type": "string",
+          "description": "the current password for the credential and user with access to the data source. This is required if the requester is not the account owner."
+        }
+      }
     },
     "DataLakeAnalyticsCatalogCredentialUpdateParameters": {
       "properties": {
