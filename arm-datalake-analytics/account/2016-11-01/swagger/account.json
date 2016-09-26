@@ -41,6 +41,193 @@
     }
   },
   "paths": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/hiveMetastores/{hiveMetastoreName}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_GetHiveMetastore",
+        "description": "Gets the specified Hive metastore linked to the given Data Lake Analytics account.",
+        "parameters": [
+          {
+            "name": "resourceGroupName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Azure resource group that contains the Data Lake Analytics account."
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Data Lake Analytics account from which to retrieve Hive metastore details."
+          },
+          {
+            "name": "hiveMetastoreName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Hive metastore for which to retrieve the details."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/HiveMetastore"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_DeleteHiveMetastore",
+        "description": "Updates the specified Data Lake Analytics account to remove the specified Hive metastore.",
+        "parameters": [
+          {
+            "name": "resourceGroupName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Azure resource group that contains the Data Lake Analytics account."
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Data Lake Analytics account from which to remove the Hive metastore."
+          },
+          {
+            "name": "hiveMetastoreName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Hive metastore to remove"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_UpdateHiveMetaStore",
+        "description": "Updates the Data Lake Analytics account to replace Hive metastore details with updated ones, such as an updated password.",
+        "parameters": [
+          {
+            "name": "resourceGroupName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Azure resource group that contains the Data Lake Analytics account."
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Data Lake Analytics account to modify Hive metastores in"
+          },
+          {
+            "name": "hiveMetastoreName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Hive metastore to modify"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddOrUpdateHiveMetaStoreParameters"
+            },
+            "description": "The parameters containing Hive metastore properties to update."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_AddHiveMetastore",
+        "description": "Updates the specified Data Lake Analytics account to add a Hive metastore.",
+        "parameters": [
+          {
+            "name": "resourceGroupName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Azure resource group that contains the Data Lake Analytics account."
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Data Lake Analytics account to which to add Hive metastore."
+          },
+          {
+            "name": "hiveMetastoreName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Hive metastore to add"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddOrUpdateHiveMetaStoreParameters"
+            },
+            "description": "The parameters containing properties for the Hive metastore to add."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/StorageAccounts/{storageAccountName}": {
       "get": {
         "tags": [
@@ -160,7 +347,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AddStorageAccountParameters"
+              "$ref": "#/definitions/AddOrUpdateStorageAccountParameters"
             },
             "description": "The parameters containing the access key and suffix to update the storage account with."
           },
@@ -210,7 +397,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AddStorageAccountParameters"
+              "$ref": "#/definitions/AddOrUpdateStorageAccountParameters"
             },
             "description": "The parameters containing the access key and optional suffix for the Azure Storage Account."
           },
@@ -523,7 +710,115 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/StorageAccounts/": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/hiveMetastores": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_ListHiveMetastores",
+        "description": "Gets the first page of the Hive metastores, if any, linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any.",
+        "parameters": [
+          {
+            "name": "resourceGroupName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Azure resource group that contains the Data Lake Analytics account."
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the Data Lake Analytics account for which to list Hive metastores."
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The OData filter. Optional."
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of items to return. Optional."
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of items to skip over before returning elements. Optional."
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "OData expansion. Expand related resources in line with the retrieved resources, e.g. Categories/$expand=Products would expand Product data in line with each Category entry. Optional."
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional."
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "OrderBy clause. One or more comma-separated expressions with an optional \"asc\" (the default) or \"desc\" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional."
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional."
+          },
+          {
+            "name": "$search",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "A free form search. A free-text search expression to match for whether a particular entry should be included in the feed, e.g. Categories?$search=blue OR green. Optional."
+          },
+          {
+            "name": "$format",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The desired return format. Return the response in particular formatxii without access to request headers for standard content-type negotiation (e.g Orders?$format=json). Optional."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DataLakeAnalyticsAccountListHiveMetastoreResult"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-odata": "#/definitions/HiveMetastore"
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/StorageAccounts": {
       "get": {
         "tags": [
           "Account"
@@ -1127,6 +1422,55 @@
     }
   },
   "definitions": {
+    "HiveMetaStoreProperties": {
+      "required": [
+        "serverUri",
+        "databaseName",
+        "userName",
+        "password",
+        "runtimeVersion"
+      ],
+      "properties": {
+        "serverUri": {
+          "type": "string",
+          "description": "Gets or sets URL of the server to connect to. For example: myserver.database.windows.net, myserver.cloudapp.net"
+        },
+        "databaseName": {
+          "type": "string",
+          "description": "Gets or sets the name of the database to connect to."
+        },
+        "runtimeVersion": {
+          "type": "string",
+          "description": "Gets or sets the Hive version associated with the metastore. Format: 1.2.3.4"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Sets the user name for the connection."
+        },
+        "password": {
+          "type": "string",
+          "description": "Sets the password for the connection."
+        }
+      },
+      "description": "Hive metastore properties information."
+    },
+    "HiveMetastore": {
+      "required": [
+        "name",
+        "properties"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Gets or sets the Hive metastore name."
+        },
+        "properties": {
+          "$ref": "#/definitions/HiveMetaStoreProperties",
+          "description": "Gets or sets the properties associated with this Hive metastore."
+        }
+      },
+      "description": "Hive metastore information."
+    },
     "StorageAccountProperties": {
       "required": [
         "accessKey"
@@ -1266,6 +1610,30 @@
       },
       "description": "Data Lake Store account information."
     },
+    "DataLakeAnalyticsAccountListHiveMetastoreResult": {
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HiveMetastore"
+          },
+          "readOnly": true,
+          "description": "Gets or set the results of the list operation"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true,
+          "description": "Gets or sets total number of results."
+        },
+        "nextLink": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Gets or sets the link (url) to the next page of results."
+        }
+      },
+      "description": "Hive metastore list information."
+    },
     "DataLakeAnalyticsAccountListStorageAccountsResult": {
       "properties": {
         "value": {
@@ -1353,6 +1721,10 @@
           "type": "string",
           "description": "the default data lake storage account associated with this Data Lake Analytics account."
         },
+        "activeHiveMetastore": {
+          "type": "string",
+          "description": "Gets or sets the currently active Hive metastore associated with this Data Lake Analytics account."
+        },
         "maxDegreeOfParallelism": {
           "type": "integer",
           "format": "int32",
@@ -1376,6 +1748,13 @@
             "$ref": "#/definitions/StorageAccountInfo"
           },
           "description": "the list of Azure Blob storage accounts associated with this account."
+        },
+        "hiveMetastores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HiveMetastore"
+          },
+          "description": "Gets or sets the list of Hive metastores associated with this account."
         },
         "creationTime": {
           "type": "string",
@@ -1407,19 +1786,31 @@
           "description": "the properties for the Data Lake Store account being added."
         }
       },
-      "description": "Additional Data Lake Store parameters."
+      "description": "Data Lake Store add parameters."
     },
-    "AddStorageAccountParameters": {
+    "AddOrUpdateStorageAccountParameters": {
       "required": [
         "properties"
       ],
       "properties": {
         "properties": {
           "$ref": "#/definitions/StorageAccountProperties",
-          "description": "the properties for the Azure Storage account being added."
+          "description": "the properties for the Azure Storage account being added or updated."
         }
       },
-      "description": "Additional Azure Storage account parameters."
+      "description": "Azure Storage account add or update parameters."
+    },
+    "AddOrUpdateHiveMetaStoreParameters": {
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/HiveMetaStoreProperties",
+          "description": "Gets or sets the properties for the Hive metastore being added or updated."
+        }
+      },
+      "description": "Hive metastore add or update parameters."
     },
     "DataLakeAnalyticsAccount": {
       "properties": {
