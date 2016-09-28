@@ -665,6 +665,23 @@
           "format": "int32",
           "readOnly": true,
           "description": "the number of statements that have been run based on the script"
+        },
+        "configurations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "the value of custom configurations."
+        },
+        "sessionHandle": {
+          "type": "string",
+          "readOnly": true,
+          "description": "GUID string, used to locate the aggregated yarn logs, including HiveServer2 and HiveMetastore logs and Tez AM logs."
+        },
+        "tezApplicationId": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Tez application Id, the client can use ATS API to get DAG info"
         }
       }
     },
