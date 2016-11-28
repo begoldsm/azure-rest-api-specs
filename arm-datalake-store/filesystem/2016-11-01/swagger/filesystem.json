@@ -28,14 +28,10 @@
     "https"
   ],
   "consumes": [
-    "application/json",
-    "text/json",
-    "application/octet-stream"
+    "application/json"
   ],
   "produces": [
-    "application/json",
-    "text/json",
-    "application/octet-stream"
+    "application/json"
   ],
   "paths": {
     "/WebHdfsExt/{filePath}": {
@@ -47,7 +43,7 @@
           "application/octet-stream"
         ],
         "operationId": "FileSystem_ConcurrentAppend",
-        "description": "Appends to the specified file. This method supports multiple concurrent appends to the file. NOTE: ConcurrentAppend and normal (serial) Append CANNOT be used interchangeably; once a file has been appended to using either of these append options, it can only be appended to using that append option. ConcurrentAppend DOES NOT guarantee order and can result in duplicated data landing in the target file. In order to close a file after using ConcurrentAppend, call the Flush method.",
+        "description": "Appends to the specified file. This method supports multiple concurrent appends to the file. NOTE: ConcurrentAppend and normal (serial) Append CANNOT be used interchangeably; once a file has been appended to using either of these append options, it can only be appended to using that append option. ConcurrentAppend DOES NOT guarantee order and can result in duplicated data landing in the target file.",
         "parameters": [
           {
             "name": "filePath",
@@ -106,7 +102,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -222,7 +218,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -263,7 +259,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/FileOperationResult"
             }
@@ -320,7 +316,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -383,7 +379,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -448,7 +444,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/FileStatusesResult"
             }
@@ -494,7 +490,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/ContentSummaryResult"
             }
@@ -540,76 +536,10 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/FileStatusResult"
             }
-          },
-          "default": {
-            "description": "An unexpected error from the server.",
-            "schema":
-            {
-              "$ref": "#/definitions/AdlsError"
-            }
-          }
-        }
-      }
-    },
-    "/webhdfs/v1/{flushFilePath}": {
-      "post": {
-        "tags": [
-          "FileSystem"
-        ],
-        "consumes": [
-          "application/octet-stream"
-        ],
-        "operationId": "FileSystem_Flush",
-        "description": "Flushes the specified file to the store. This forces an update to the metadata of the file (returned from GetFileStatus), and is required by ConcurrentAppend once the file is done to populate finalized metadata.",
-        "parameters": [
-          {
-            "name": "flushFilePath",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The Data Lake Store path (starting with '/') of the file to which to flush."
-          },
-          {
-            "name": "op",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "description": "The constant value for the operation.",
-            "enum": [
-              "APPEND"
-            ]
-          },
-          {
-            "name": "append",
-            "in": "query",
-            "required": true,
-            "description": "The constant value that avoids redirects.",
-            "type": "string",
-            "enum": [
-              "true"
-            ]
-          },
-          {
-            "name": "flush",
-            "in": "query",
-            "required": true,
-            "description": "The constant value initiating the flush.",
-            "type": "string",
-            "enum": [
-              "true"
-            ]
-          },
-          {
-            "$ref": "#/parameters/ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully flushed the specified file."
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -658,6 +588,23 @@
             "description": "The optional offset in the stream to begin the append operation. Default is to append at the end of the stream."
           },
           {
+            "name": "syncFlag",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "CLOSE",
+            "description": "Optionally indicates what to do after completion of the append. DATA indicates more data is coming so no sync takes place, METADATA indicates a sync should be done to refresh metadata of the file only. CLOSE indicates that both the stream and metadata should be refreshed upon append completion.",
+            "enum": [
+              "DATA",
+              "METADATA",
+              "CLOSE"
+            ],
+            "x-ms-enum": {
+            "name": "SyncFlag",
+            "modelAsString": false
+            }
+          },
+          {
             "name": "op",
             "in": "query",
             "required": true,
@@ -683,7 +630,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -729,6 +676,23 @@
             "description": "The indication of if the file should be overwritten."
           },
           {
+            "name": "syncFlag",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "CLOSE",
+            "description": "Optionally indicates what to do after completion of the append. DATA indicates more data is coming so no sync takes place, METADATA indicates a sync should be done to refresh metadata of the file only. CLOSE indicates that both the stream and metadata should be refreshed upon append completion.",
+            "enum": [
+              "DATA",
+              "METADATA",
+              "CLOSE"
+            ],
+            "x-ms-enum": {
+            "name": "SyncFlag",
+            "modelAsString": false
+            }
+          },
+          {
             "name": "op",
             "in": "query",
             "required": true,
@@ -754,7 +718,7 @@
         ],
         "responses": {
           "201": {
-            "description": ""
+            "description": "CREATED"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -771,6 +735,9 @@
         ],
         "operationId": "FileSystem_Open",
         "description": "Opens and reads from the specified file.",
+        "produces": [
+          "application/octet-stream"
+        ],
         "parameters": [
           {
             "name": "directFilePath",
@@ -784,14 +751,16 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The number of bytes that the server will attempt to retrieve. It will retrieve <= length bytes."
           },
           {
             "name": "offset",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The byte offset to start reading data from."
           },
           {
             "name": "op",
@@ -819,7 +788,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "type": "file"
             }
@@ -872,7 +841,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -922,7 +891,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -972,7 +941,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -1099,7 +1068,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/AclStatusResult"
             }
@@ -1152,7 +1121,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/FileOperationResult"
             }
@@ -1205,7 +1174,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/FileOperationResult"
             }
@@ -1265,7 +1234,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -1315,7 +1284,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
           },
           "default": {
             "description": "An unexpected error from the server.",
@@ -1397,7 +1366,7 @@
           "type": "integer",
           "readOnly": true,
           "format": "int64",
-          "description": "the number of bytes used by the contet."
+          "description": "the number of bytes used by the content."
         },
         "spaceConsumed": {
           "type": "integer",
@@ -1442,7 +1411,7 @@
           "type": "integer",
           "readOnly": true,
           "format": "int64",
-          "description": "Gets the expiration time, if any, as ticks since the epoch. If this is set to 0 or DateTime.MaxValue there is no expiration."
+          "description": "Gets the expiration time, if any, as ticks since the epoch. If the value is 0 or DateTime.MaxValue there is no expiration."
         },
         "group": {
           "type": "string",
@@ -1606,6 +1575,15 @@
       ],
       "description": "A WebHDFS exception thrown indicating that access is denied due to insufficient permissions. Thrown when a 403 error response code is returned (forbidden)."
     },
+    "AdlsThrottledException": {
+      "x-ms-discriminator-value": "ThrottledException",
+      "allOf": [ 
+        { 
+          "$ref":  "#/definitions/AdlsRemoteException" 
+        } 
+      ],
+      "description": "A WebHDFS exception thrown indicating that the request is being throttled. Reducing the number of requests or request size helps to mitigate this error."
+    },
     "AdlsRemoteException": {
       "discriminator": "exception",
       "required": [
@@ -1628,7 +1606,7 @@
           "description": "the message associated with the exception that was thrown, such as 'Invalid value for webhdfs parameter \"permission\":...'."
         }
       },
-      "description": "Data Lake Store filesystem exception based on the WebHDFS definition for RemoteExceptions."
+      "description": "Data Lake Store filesystem exception based on the WebHDFS definition for RemoteExceptions. This is a WebHDFS 'catch all' exception"
     },
     "AdlsError": {
       "properties": {
