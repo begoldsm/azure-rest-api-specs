@@ -1470,9 +1470,13 @@
       "description": "Azure Storage account properties information to update."
     },
     "StorageAccountInfo": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SubResource"
+        }
+      ],
       "required": [
-        "properties",
-        "name"
+        "properties"
       ],
       "properties": {
         "name": {
@@ -1579,8 +1583,10 @@
       "description": "Data Lake Store account properties information."
     },
     "DataLakeStoreAccountInfo": {
-      "required": [
-        "name"
+      "allOf": [
+        {
+          "$ref": "#/definitions/SubResource"
+        }
       ],
       "properties": {
         "name": {
@@ -1967,7 +1973,7 @@
       "x-ms-azure-resource": true
     },
     "SubResource": {
-      "description": "The Sub-resource model definition.",
+      "description": "The Sub Resource model definition.",
       "properties": {
         "id": {
           "readOnly": true,
@@ -1984,6 +1990,9 @@
           "description": "Resource type"
         }
       },
+      "required": [
+        "name"
+      ],
       "x-ms-azure-resource": true
     }
   },
