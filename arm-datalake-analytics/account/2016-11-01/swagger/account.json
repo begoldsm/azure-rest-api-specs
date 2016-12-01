@@ -774,7 +774,6 @@
           {
             "name": "parameters",
             "in": "body",
-            "required": true,
             "schema": {
               "$ref": "#/definitions/AddDataLakeStoreParameters"
             },
@@ -1207,9 +1206,7 @@
           }
         },
         "x-ms-long-running-operation": true
-      }
-    },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{name}": {
+      },
       "put": {
         "tags": [
           "Account"
@@ -1479,10 +1476,6 @@
         "properties"
       ],
       "properties": {
-        "name": {
-          "type": "string",
-          "description": "the account name associated with the Azure storage account."
-        },
         "properties": {
           "$ref": "#/definitions/StorageAccountProperties",
           "description": "the properties associated with this storage account.",
@@ -1589,10 +1582,6 @@
         }
       ],
       "properties": {
-        "name": {
-          "type": "string",
-          "description": "the account name of the Data Lake Store account to add to the Data Lake Analytics account being created."
-        },
         "properties": {
           "$ref": "#/definitions/DataLakeStoreAccountInfoProperties",
           "description": "the properties associated with this Data Lake Store account.",
@@ -1888,54 +1877,6 @@
         }
       },
       "description": "Generic resource error details information."
-    },
-    "InnerError": {
-      "properties": {
-        "trace": {
-          "type": "string",
-          "readOnly": true,
-          "description": "the stack trace for the error"
-        },
-        "context": {
-          "type": "string",
-          "readOnly": true,
-          "description": "the context for the error message"
-        }
-      },
-      "description": "Generic resource inner error information."
-    },
-    "Error": {
-      "properties": {
-        "code": {
-          "type": "string",
-          "readOnly": true,
-          "description": "the HTTP status code or error code associated with this error"
-        },
-        "message": {
-          "type": "string",
-          "readOnly": true,
-          "description": "the error message to display."
-        },
-        "target": {
-          "type": "string",
-          "readOnly": true,
-          "description": "the target of the error."
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ErrorDetails"
-          },
-          "readOnly": true,
-          "description": "The list of error details"
-        },
-        "innerError": {
-          "$ref": "#/definitions/InnerError",
-          "readOnly": true,
-          "description": "The inner exceptions or errors, if any"
-        }
-      },
-      "description": "Generic resource error information."
     },
     "Resource": {
       "description": "The Resource model definition.",
