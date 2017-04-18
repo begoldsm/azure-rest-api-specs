@@ -1,0 +1,21 @@
+{
+    "parameters": {
+        "api-version": "2016-11-01",
+        "jobPolicyName": "test job policy",
+        "resourceGroupName": "contosorg",
+        "accountName": "contosoadla"
+    },
+    "responses": {
+        "200": {
+            "body": {                
+                "name": "test job policy",
+                "properties": {
+                    "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+                    "objectType": "User",
+                    "maxDegreeOfParallelismPerJob": "10",
+                    "minPriority": "30"
+                }
+            }
+        }
+    }
+}
