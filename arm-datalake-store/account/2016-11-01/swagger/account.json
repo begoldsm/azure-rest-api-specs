@@ -57,7 +57,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Store account to which to add the firewall rule."
+            "description": "The name of the Data Lake Store account to add or replace the firewall rule."
           },
           {
             "name": "firewallRuleName",
@@ -295,7 +295,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Store account to which to add or replace the trusted identity provider."
+            "description": "The name of the Data Lake Store account to add or replace the trusted identity provider."
           },
           {
             "name": "trustedIdProviderName",
@@ -1283,6 +1283,18 @@
           },
           "readOnly": true,
           "description": "the commitment tier in use for the current month."
+        },
+        "firewallAllowAzureIps": {
+          "type": "string",
+          "description": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced.",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "x-ms-enum": {
+            "name": "FirewallAllowAzureIpsState",
+            "modelAsString": false
+          }
         }
       },
       "description": "Data Lake Store account properties information"
@@ -1345,6 +1357,18 @@
             "modelAsString": false
           },
           "description": "the commitment tier to use for next month."
+        },
+        "firewallAllowAzureIps": {
+          "type": "string",
+          "description": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced.",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "x-ms-enum": {
+            "name": "FirewallAllowAzureIpsState",
+            "modelAsString": false
+          }
         }
       },
       "description": "Data Lake Store account properties information to be updated."

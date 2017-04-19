@@ -475,6 +475,9 @@
         "name": {
           "type": "string",
           "enum": [
+            "B1",
+            "B2",
+            "S0",
             "S1",
             "S2",
             "S4",
@@ -484,19 +487,20 @@
             "name": "SkuName",
             "modelAsString": true
           },
-          "description": "Name of the SKU level for the server being provisioned. Possible values are: 'S1', 'S2', 'S4', and 'D1'."
+          "description": "Name of the SKU level for the server being provisioned."
         },
         "tier": {
           "type": "string",
           "enum": [
             "Development",
+            "Basic",
             "Standard"
           ],
           "x-ms-enum": {
             "name": "SkuTier",
             "modelAsString": true
           },
-          "description": "The name of the Azure pricing tier to which the SKU applies. Possible values are: 'Development' and 'Standard'."
+          "description": "The name of the Azure pricing tier to which the SKU applies."
         }
       },
       "required": [
@@ -509,6 +513,9 @@
       "properties": {
         "asAdministrators": {
           "$ref": "#/definitions/ServerAdministrators"
+        },
+        "backupConfiguration": {
+          "$ref": "#/definitions/BackupConfiguration"
         }
       }
     },
@@ -525,6 +532,28 @@
           "description": "An array of administrator user identities."
         }
       }
+    },
+    "BackupConfiguration": {
+      "description": "An object that represents backup configurations",
+      "type": "object",
+      "properties": {
+        "storageAccount": {
+          "type": "string",
+          "description": "Storage account full resource id for backup configuration"
+        },
+        "blobContainer": {
+          "type": "string",
+          "description": "The name of blob container for backup configuration"
+        },
+        "accessKey": {
+          "type": "string",
+          "description": "The access key of storage account used for backup configuration"
+        }
+      },
+      "required": [
+        "storageAccount",
+        "blobContainer"
+      ]
     }
   },
   "parameters": {
