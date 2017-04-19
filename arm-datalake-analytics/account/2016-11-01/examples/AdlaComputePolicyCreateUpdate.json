@@ -1,10 +1,18 @@
 {
     "parameters": {
         "api-version": "2016-11-01",
-        "jobPolicyName": "testpolicy",
+        "computePolicyName": "testpolicy",
         "resourceGroupName": "contosorg",
         "accountName": "contosoadla",
-        "subscriptionId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+        "subscriptionId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+        "parameters": {
+            "properties": {
+                "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+                "objectType": "User",
+                "maxDegreeOfParallelismPerJob": 10,
+                "minPriorityPerJob": 30
+            }
+        }
     },
     "responses": {
         "200": {
@@ -14,7 +22,7 @@
                     "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
                     "objectType": "User",
                     "maxDegreeOfParallelismPerJob": 10,
-                    "minPriority": 30
+                    "minPriorityPerJob": 30
                 }
             }
         }

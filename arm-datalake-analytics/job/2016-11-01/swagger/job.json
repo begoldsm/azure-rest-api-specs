@@ -35,6 +35,51 @@
     "application/json"
   ],
   "paths": {
+    "/pipelines" : {
+      "get": {
+        "tags": [
+          "Pipeline"
+        ],
+        "operationId": "Pipeline_List",
+        "description": "Lists all pipelines.",
+        "x-ms-examples": {
+          "List all of the pipelines in an account": { "$ref": "../examples/AdlPipelineList.json" }
+        },
+        "parameters": [
+          {
+            "name": "startDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The start date for when to get the list of pipelines. The startDateTime and endDateTime can be no more than 30 days apart."
+          },
+          {
+            "name": "endDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The end date for when to get the list of pipelines. The startDateTime and endDateTime can be no more than 30 days apart."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of pipelines.",
+            "schema": {
+              "$ref": "#/definitions/JobPipelineInformationListResult"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-odata": "#/definitions/JobPipelineInformation"
+      }
+    },
     "/pipelines/{pipelineIdentity}": {
       "get": {
         "tags": [
@@ -53,6 +98,22 @@
             "type": "string",
             "format": "uuid",
             "description": "Pipeline ID."
+          },
+          {
+            "name": "startDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The start date for when to get the pipeline and aggregate its data. The startDateTime and endDateTime can be no more than 30 days apart."
+          },
+          {
+            "name": "endDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The end date for when to get the pipeline and aggregate its data. The startDateTime and endDateTime can be no more than 30 days apart."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -79,6 +140,22 @@
           "List all of the recurrences in an account": { "$ref": "../examples/AdlRecurrenceList.json" }
         },
         "parameters": [
+          {
+            "name": "startDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The start date for when to get the list of recurrences. The startDateTime and endDateTime can be no more than 30 days apart."
+          },
+          {
+            "name": "endDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The end date for when to get the list of recurrences. The startDateTime and endDateTime can be no more than 30 days apart."
+          },
           {
             "$ref": "#/parameters/ApiVersionParameter"
           }
@@ -115,6 +192,22 @@
             "type": "string",
             "format": "uuid",
             "description": "Recurrence ID."
+          },
+          {
+            "name": "startDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The start date for when to get the recurrence and aggregate its data. The startDateTime and endDateTime can be no more than 30 days apart."
+          },
+          {
+            "name": "endDateTime",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time",
+            "description": "The end date for when to get recurrence and aggregate its data. The startDateTime and endDateTime can be no more than 30 days apart."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
