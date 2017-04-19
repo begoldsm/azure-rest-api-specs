@@ -76,8 +76,7 @@
         },
         "x-ms-pageable": {
           "nextLinkName": "nextLink"
-        },
-        "x-ms-odata": "#/definitions/JobPipelineInformation"
+        }
       }
     },
     "/pipelines/{pipelineIdentity}": {
@@ -170,8 +169,7 @@
         },
         "x-ms-pageable": {
           "nextLinkName": "nextLink"
-        },
-        "x-ms-odata": "#/definitions/JobRecurrenceInformation"
+        }
       }
     },
     "/recurrences/{recurrenceIdentity}": {
