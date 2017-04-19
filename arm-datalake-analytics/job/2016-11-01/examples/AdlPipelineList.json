@@ -17,7 +17,8 @@
                     "auHoursCanceled":  20.6,
                     "auHoursSucceeded":  100.0,
                     "lastSubmitTime":   "2017-04-18T11:16:49.0748958-07:00"
-                }]
+                }],
+                "nextLink":"https://contosoadla.datalakeanalytics.net/pipelines/?api-version=2016-11-01&%24skiptoken=<token>"
             }
         }
     }

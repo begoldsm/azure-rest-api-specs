@@ -37,13 +37,13 @@
     }
   },
   "paths": {
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/JobPolicies/{jobPolicyName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}": {
       "put": {
         "tags": [
-          "JobPolicy"
+          "ComputePolicy"
         ],
-        "operationId": "JobPolicy_CreateOrUpdate",
-        "description": "Creates or updates the specified job policy. During update, the job policy with the specified name will be replaced with this new job policy.",
+        "operationId": "ComputePolicy_CreateOrUpdate",
+        "description": "Creates or updates the specified compute policy. During update, the compute policy with the specified name will be replaced with this new compute policy. An account supports, at most, 50 policies",
         "parameters": [
           {
             "name": "resourceGroupName",
@@ -57,23 +57,23 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Analytics account to add or replace the job policy."
+            "description": "The name of the Data Lake Analytics account to add or replace the compute policy."
           },
           {
-            "name": "jobPolicyName",
+            "name": "computePolicyName",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the job policy to create or update."
+            "description": "The name of the compute policy to create or update."
           },
           {
             "name": "parameters",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/JobPolicyCreateOrUpdateParameters"
+              "$ref": "#/definitions/ComputePolicyCreateOrUpdateParameters"
             },
-            "description": "Parameters supplied to create or update the job policy."
+            "description": "Parameters supplied to create or update the compute policy. The max degree of parallelism per job property, min priority per job property, or both must be present."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -84,19 +84,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully created or updated the specified job policy",
+            "description": "Successfully created or updated the specified compute policy",
             "schema": {
-              "$ref": "#/definitions/JobPolicy"
+              "$ref": "#/definitions/ComputePolicy"
             }
           }
         }
       },
       "patch": {
         "tags": [
-          "JobPolicy"
+          "ComputePolicy"
         ],
-        "operationId": "JobPolicy_Update",
-        "description": "Updates the specified job policy.",
+        "operationId": "ComputePolicy_Update",
+        "description": "Updates the specified compute policy.",
         "parameters": [
           {
             "name": "resourceGroupName",
@@ -110,23 +110,23 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Analytics account to which to update the job policy."
+            "description": "The name of the Data Lake Analytics account to which to update the compute policy."
           },
           {
-            "name": "jobPolicyName",
+            "name": "computePolicyName",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the job policy to update."
+            "description": "The name of the compute policy to update."
           },
           {
             "name": "parameters",
             "in": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/JobPolicy"
+              "$ref": "#/definitions/ComputePolicy"
             },
-            "description": "Parameters supplied to update the job policy."
+            "description": "Parameters supplied to update the compute policy."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -137,19 +137,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully updated the specified job policy",
+            "description": "Successfully updated the specified compute policy",
             "schema": {
-              "$ref": "#/definitions/JobPolicy"
+              "$ref": "#/definitions/ComputePolicy"
             }
           }
         }
       },
       "delete": {
         "tags": [
-          "JobPolicy"
+          "ComputePolicy"
         ],
-        "operationId": "JobPolicy_Delete",
-        "description": "Deletes the specified job policy from the specified Data Lake Analytics account",
+        "operationId": "ComputePolicy_Delete",
+        "description": "Deletes the specified compute policy from the specified Data Lake Analytics account",
         "parameters": [
           {
             "name": "resourceGroupName",
@@ -163,14 +163,14 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Analytics account from which to delete the job policy."
+            "description": "The name of the Data Lake Analytics account from which to delete the compute policy."
           },
           {
-            "name": "jobPolicyName",
+            "name": "computePolicyName",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the job policy to delete."
+            "description": "The name of the compute policy to delete."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -181,19 +181,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully deleted the specified job policy"
+            "description": "Successfully deleted the specified compute policy"
           },
           "204": {
-            "description": "The specified job policy does not exist or was already deleted."
+            "description": "The specified compute policy does not exist or was already deleted."
           }
         }
       },
       "get": {
         "tags": [
-          "JobPolicy"
+          "ComputePolicy"
         ],
-        "operationId": "JobPolicy_Get",
-        "description": "Gets the specified Data Lake Analytics job policy.",
+        "operationId": "ComputePolicy_Get",
+        "description": "Gets the specified Data Lake Analytics compute policy.",
         "parameters": [
           {
             "name": "resourceGroupName",
@@ -207,14 +207,14 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Analytics account from which to get the job policy."
+            "description": "The name of the Data Lake Analytics account from which to get the compute policy."
           },
           {
-            "name": "jobPolicyName",
+            "name": "computePolicyName",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the job policy to retrieve."
+            "description": "The name of the compute policy to retrieve."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -225,21 +225,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved the specified job policy.",
+            "description": "Successfully retrieved the specified compute policy.",
             "schema": {
-              "$ref": "#/definitions/JobPolicy"
+              "$ref": "#/definitions/ComputePolicy"
             }
           }
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/jobpolicies": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies": {
       "get": {
         "tags": [
-          "JobPolicy"
+          "ComputePolicy"
         ],
-        "operationId": "JobPolicy_ListByAccount",
-        "description": "Lists the Data Lake Analytics job policies within the specified Data Lake Analytics account.",
+        "operationId": "ComputePolicy_ListByAccount",
+        "description": "Lists the Data Lake Analytics compute policies within the specified Data Lake Analytics account. An account supports, at most, 50 policies",
         "parameters": [
           {
             "name": "resourceGroupName",
@@ -253,7 +253,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The name of the Data Lake Analytics account from which to get the job policies."
+            "description": "The name of the Data Lake Analytics account from which to get the compute policies."
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -264,9 +264,9 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully listed the job policies.",
+            "description": "Successfully listed the compute policies.",
             "schema": {
-              "$ref": "#/definitions/JobPolicyListResult"
+              "$ref": "#/definitions/ComputePolicyListResult"
             }
           }
         },
@@ -1896,12 +1896,12 @@
           "minimum": 1,
           "description": "the minimum supported priority per job for this account."
         },
-        "jobPolicies": {
+        "computePolicies": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/JobPolicyAccountCreateParameters"
+            "$ref": "#/definitions/ComputePolicyAccountCreateParameters"
           },
-          "description": "the list of job policies to create in this account."
+          "description": "the list of compute policies to create in this account."
         }
       },
       "description": "The account specific properties that are associated with an underlying Data Lake Analytics account."
@@ -1989,12 +1989,12 @@
           "minimum": 1,
           "description": "the minimum supported priority per job for this account."
         },
-        "jobPolicies": {
+        "computePolicies": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/JobPolicy"
+            "$ref": "#/definitions/ComputePolicy"
           },
-          "description": "the list of existing job policies to update in this account."
+          "description": "the list of existing compute policies to update in this account."
         }
       },
       "description": "The properties to update that are associated with an underlying Data Lake Analytics account to."
@@ -2032,7 +2032,7 @@
       },
       "description": "Storage account parameters for a storage account being updated in a Data Lake Analytics account."
     },
-    "JobPolicyPropertiesCreateParameters": {
+    "ComputePolicyPropertiesCreateParameters": {
       "properties": {
         "objectId": {
           "type": "string",
@@ -2056,43 +2056,43 @@
           "type": "integer",
           "format": "int32",
           "minimum": 1,
-          "description": "The maximum degree of parallelism per job this user can use to submit jobs."
+          "description": "The maximum degree of parallelism per job this user can use to submit jobs. This property, the min priority per job property, or both must be passed."
         },
-        "minPriority": {
+        "minPriorityPerJob": {
           "type": "integer",
           "format": "int32",
           "minimum": 1,
-          "description": "The minimum priority per job this user can use to submit jobs."
+          "description": "The minimum priority per job this user can use to submit jobs. This property, the max degree of parallelism per job property, or both must be passed."
         }
       },
       "required": [
         "objectId",
         "objectType"
       ],
-      "description": "The job policy properties to use when creating a new job policy"
+      "description": "The compute policy properties to use when creating a new compute policy"
     },
-    "JobPolicyCreateOrUpdateParameters": {
+    "ComputePolicyCreateOrUpdateParameters": {
       "properties": {
         "properties": {
-          "$ref": "#/definitions/JobPolicyPropertiesCreateParameters",
-          "description": "The policy properties to use when creating a new job policy",
+          "$ref": "#/definitions/ComputePolicyPropertiesCreateParameters",
+          "description": "The policy properties to use when creating a new compute policy",
           "x-ms-client-flatten": true
         }
       },
       "required": [
         "properties"
       ],
-      "description": "The parameters used to create a new job policy."
+      "description": "The parameters used to create a new compute policy."
     },
-    "JobPolicyAccountCreateParameters": {
+    "ComputePolicyAccountCreateParameters": {
       "properties": {
         "name": {
           "type": "string",
           "description": "The unique name of the policy to create"
         },
         "properties": {
-          "$ref": "#/definitions/JobPolicyPropertiesCreateParameters",
-          "description": "The policy properties to use when creating a new job policy",
+          "$ref": "#/definitions/ComputePolicyPropertiesCreateParameters",
+          "description": "The policy properties to use when creating a new compute policy",
           "x-ms-client-flatten": true
         }
       },
@@ -2100,9 +2100,9 @@
         "name",
         "properties"
       ],
-      "description": "The parameters used to create a new job policy."
+      "description": "The parameters used to create a new compute policy."
     },
-    "JobPolicyProperties": {
+    "ComputePolicyProperties": {
       "properties": {
         "objectId": {
           "type": "string",
@@ -2130,36 +2130,36 @@
           "minimum": 1,
           "description": "The maximum degree of parallelism per job this user can use to submit jobs."
         },
-        "minPriority": {
+        "minPriorityPerJob": {
           "type": "integer",
           "format": "int32",
           "minimum": 1,
           "description": "The minimum priority per job this user can use to submit jobs."
         }
       },
-      "description": "The job policy properties to use when creating a new job policy"
+      "description": "The compute policy properties to use when creating a new compute policy"
     },
-    "JobPolicy": {
+    "ComputePolicy": {
       "properties": {
         "name": {
           "type": "string",
           "readOnly": true,
-          "description": "The name of the job policy"
+          "description": "The name of the compute policy"
         },
         "properties": {
-          "$ref": "#/definitions/JobPolicyProperties",
-          "description": "The job policy properties",
+          "$ref": "#/definitions/ComputePolicyProperties",
+          "description": "The compute policy properties",
           "x-ms-client-flatten": true
         }
       },
-      "description": "The parameters used to create a new job policy."
+      "description": "The parameters used to create a new compute policy."
     },
-    "JobPolicyListResult": {
+    "ComputePolicyListResult": {
       "properties": {
         "value": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/JobPolicy"
+            "$ref": "#/definitions/ComputePolicy"
           },
           "readOnly": true,
           "description": "the results of the list operation"
@@ -2170,7 +2170,7 @@
           "description": "the link (url) to the next page of results."
         }
       },
-      "description": "The list of Job Policies in the account."
+      "description": "The list of compute policies in the account."
     },
     "DataLakeAnalyticsAccountUpdateParameters": {
       "properties": {
