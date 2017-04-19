@@ -35,6 +35,35 @@
     "application/json"
   ],
   "paths": {
+    "/pipelines" : {
+      "get": {
+        "tags": [
+          "Pipeline"
+        ],
+        "operationId": "Pipeline_List",
+        "description": "Lists all pipelines.",
+        "x-ms-examples": {
+          "List all of the pipelines in an account": { "$ref": "../examples/AdlPipelineList.json" }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the list of pipelines.",
+            "schema": {
+              "$ref": "#/definitions/JobPipelineInformationListResult"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-odata": "#/definitions/JobPipelineInformation"
+      }
+    },
     "/pipelines/{pipelineIdentity}": {
       "get": {
         "tags": [
