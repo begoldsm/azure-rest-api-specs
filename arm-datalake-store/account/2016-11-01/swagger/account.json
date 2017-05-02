@@ -1301,6 +1301,28 @@
             "name": "FirewallAllowAzureIpsState",
             "modelAsString": false
           }
+        },
+        "replicationType": {
+          "type": "string",
+          "description": "The data replication type for this Data Lake Store account, if any. The options are LRS (local redundant storage, the default) and RAGRS (read access geo-redundant storage)",
+          "enum": [
+            "LRS",
+            "RAGRS"
+          ],
+          "x-ms-enum": {
+            "name": "ReplicationType",
+            "modelAsString": false
+          }
+        },
+        "secondaryLocation": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The region where the second account that data is replicated to exists. This is set for RAGRS replication types."
+        },
+        "secondaryEndpoint": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The endpoint of the second account that data is replicated to. This is set for RAGRS replication types."
         }
       },
       "description": "Data Lake Store account properties information"
@@ -1367,6 +1389,18 @@
         "encryptionConfig": {
           "$ref": "#/definitions/UpdateEncryptionConfig",
           "description": "Used for rotation of user managed Key Vault keys. Can only be used to rotate a user managed encryption Key Vault key."
+        },
+        "replicationType": {
+          "type": "string",
+          "description": "The data replication type to update to for this Data Lake Store account. The options are LRS (local redundant storage) and RAGRS (read access geo-redundant storage)",
+          "enum": [
+            "LRS",
+            "RAGRS"
+          ],
+          "x-ms-enum": {
+            "name": "ReplicationType",
+            "modelAsString": false
+          }
         }
       },
       "description": "Data Lake Store account properties information to be updated."
