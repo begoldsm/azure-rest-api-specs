@@ -1304,7 +1304,7 @@
         },
         "replicationType": {
           "type": "string",
-          "description": "The data replication type for this Data Lake Store account, if any. The options are LRS (local redundant storage, the default) and RAGRS (read access geo-redundant storage)",
+          "description": "The data replication type for this Data Lake Store account. The options are LRS (local redundant storage, the default) and RAGRS (read access geo-redundant storage)",
           "enum": [
             "LRS",
             "RAGRS"
@@ -1317,12 +1317,12 @@
         "secondaryLocation": {
           "type": "string",
           "readOnly": true,
-          "description": "The region where the second account that data is replicated to exists. This is set for RAGRS replication types."
+          "description": "The location in which the storage account is being replicated. This is set for RAGRS replication types."
         },
         "secondaryEndpoint": {
           "type": "string",
           "readOnly": true,
-          "description": "The endpoint of the second account that data is replicated to. This is set for RAGRS replication types."
+          "description": "The secondary endpoint of the account in the secondary location. This is set for RAGRS replication types."
         }
       },
       "description": "Data Lake Store account properties information"
